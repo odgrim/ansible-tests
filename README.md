@@ -14,4 +14,10 @@ I made a bootstrap script to make testing easier that does the following
 - activate it
 - install ansible if not installed in the venv
 
-
+## provisioning
+copy pasta to set up from scratch:
+```
+./bootstrap.sh
+. venv/bin/activate
+vagrant up
+```
