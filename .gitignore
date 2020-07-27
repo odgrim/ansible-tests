@@ -1,0 +1,6 @@
+/venv
+*.swp
+*/1
+1
+*.log
+.vagrant

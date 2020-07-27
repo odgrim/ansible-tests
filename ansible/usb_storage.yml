@@ -1,0 +1,27 @@
+---
+# Blacklist modules from future loading
+- name: "blacklist usb-storage"
+  copy:
+    content: "blacklist usb-storage"
+    dest:    "/etc/modprobe.d/blacklist-usb-storage"
+  become: yes
+
+- name: "blacklist uas/usb attache scsi"
+  copy:
+    content: "blacklist uas"
+    dest:    "/etc/modprobe.d/blacklist-uas"
+  become: yes
+
+# Unload running modules
+- name: "Kill uas module if loaded"
+  modprobe:
+    name: "uas"
+    state: absent
+  become: yes
+
+- name: "Kill usb-storage module if loaded"
+  modprobe:
+    name: "usb-storage"
+    state: absent
+  become: yes
+

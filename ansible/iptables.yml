@@ -1,0 +1,53 @@
+---
+# ufw doesn't block by user, turn it off to use iptables without fighting
+- name: "Disable ufw"
+  ufw:
+    state: disabled
+  become: yes
+
+# Accept ICMP/SSH
+- name: "Allow icmp"
+  iptables:
+    chain: INPUT
+    protocol: ICMP
+    jump: ACCEPT
+  become: yes
+
+- name: "Allow SSH"
+  iptables:
+    chain: INPUT
+    jump: ACCEPT
+    protocol: tcp
+    destination_port: "22"
+  become: yes
+
+# Allow outbound admin
+- name: "Allow outbound admin"
+  iptables:
+    chain: OUTPUT
+    jump: ACCEPT
+    protocol: all
+    gid_owner: root
+  become: yes
+
+- name: "Allow responses"
+  iptables:
+    chain: INPUT
+    ctstate: "ESTABLISHED,RELATED"
+    jump: ACCEPT
+  become: yes
+
+- name: "Disallows corp-guest outbound"
+  iptables:
+    chain: OUTPUT
+    jump: DROP
+    protocol: all
+    uid_owner: corp-guest
+  become: yes
+
+- name: "Default drop all incoming connections"
+  iptables:
+    chain: INPUT
+    policy: DROP
+  become: yes
+

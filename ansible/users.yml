@@ -1,0 +1,11 @@
+---
+- name: "Creates corp-guest account"
+  user:
+    name: corp-guest
+  become: yes
+
+- name: "Creates corp-admin account"
+  user:
+    name: corp-admin
+    group: root
+  become: yes

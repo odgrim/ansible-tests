@@ -1,0 +1,12 @@
+---
+- name: "interview bootstrap"
+  hosts: all
+  tasks:
+    - name: "import users playbook"
+      include: users.yml
+
+    - name: "import iptables playbook"
+      include: iptables.yml
+
+    - name: "import usb_storage playbook"
+      include: usb_storage.yml
