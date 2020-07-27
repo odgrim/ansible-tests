@@ -37,7 +37,7 @@ def print_scrubbed_output(results):
         print(scrubline)
 
 def convert_time(input_string, regex, date_format, tz_offset=-8):
-    r""" Converts timestamp strings into another timezone.
+    r""" Replaces first instance of a matched time string into another timezone (PST default)
 
          returns: string
 
