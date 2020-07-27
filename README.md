@@ -21,3 +21,9 @@ copy pasta to set up from scratch:
 . venv/bin/activate
 vagrant up
 ```
+
+# Timezone offset grep
+look in:
+```
+scripts/tzgrep
+```
